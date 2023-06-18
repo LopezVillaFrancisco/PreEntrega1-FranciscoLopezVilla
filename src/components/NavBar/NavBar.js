@@ -4,7 +4,7 @@ function NavBar(){
     return( 
         <nav className="navbar is-info" role="navigation" aria-label="main navigation"  >
         <div className="navbar-brand">
-        <h3 className="title">Ecommerce</h3>
+        <h3 className="title">Venta de ropa</h3>
         </div>
         
         <div className="navbar-menu">

@@ -18,9 +18,9 @@ function ItemCount ({stock,initial,onAdd}) {
     return(
         <div className="container text has-text-centered">
             <div className="is-flex is-justify-content-center mb-3">
-                <button className="button is-success mr-2" onClick={handleClickSuma}>+</button> 
+                <button className="button is-success mr-2" onClick={handleClickResta}>-</button> 
                 <p className="is-justify-content-center mt-2">{quantity}</p>
-                <button className="button is-success ml-2" onClick={handleClickResta}>-</button> 
+                <button className="button is-success ml-2" onClick={handleClickSuma}>+</button> 
             </div> 
             <div>
                 <button className="button is-success" onClick={() => onAdd(quantity)} disabled={!stock}>Agregar al carrito</button>

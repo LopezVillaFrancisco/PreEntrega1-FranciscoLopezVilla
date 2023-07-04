@@ -1,9 +1,10 @@
-
-function Item ({nombre,precio,imagen,descripcion}){
-return(
-    <article className="mx-4 container is-danger">
+import { Link } from "react-router-dom"
+function Item ({id,nombre,precio,imagen,stock}){
+    console.log(id)
+    return(
+    <article className=" container card">
         <header>
-            <h2 className="title">
+            <h2>
             {nombre}
             </h2>
         </header>
@@ -12,15 +13,18 @@ return(
         </div>
         <div className="container mt-4">
             <h3 >
-                {precio}
-            </h3>
+                Precio: ${precio}
+            </h3> 
             <p>
-                {descripcion}
+                Stock: {stock}
             </p>
         </div>
         <div className="container">
-            <button className="button is-success is-light is-outlined mt-2">Comprar</button>
+            <Link to={`/item/${id}`}>
+            <button className="button is-success is-light is-outlined mt-2">Ver detalle</button>
+            </Link>
         </div>
+
     </article>
 )
 }

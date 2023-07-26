@@ -12,8 +12,6 @@ function CheckOut (){
     
     const {cart,Total,clearCart} = useContext(CartContext)
     const total = Total()
-        console.log(total)
-
     const createOrder = async ({nombre,email,telefono}) => {
         setLoading(true)
         try {

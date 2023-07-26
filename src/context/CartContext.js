@@ -22,7 +22,6 @@ export const CartPorvider = ({children})=>{
 
     const removeItem = (itemId) => {
         setCart(cart.filter(item => item.id !== itemId))
-        console.log(cart)
     }
 
     const clearCart = () => {

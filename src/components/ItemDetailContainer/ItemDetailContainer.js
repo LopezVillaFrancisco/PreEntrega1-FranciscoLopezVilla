@@ -1,21 +1,24 @@
 import { useState,useEffect } from "react"
-import { getProductosById } from "../../async"
-import ItemDetail from "../../ItemDetail/ItemDetail"
+import ItemDetail from '../ItemDetail/ItemDetail'
 import { useParams } from "react-router-dom"
-
+import {getDoc,doc} from 'firebase/firestore' 
+import {db} from '../../config/firebase'
 function ItemDetailContainer (){
 
-const [producto,setProducto] = useState(null)
+const [producto,setProducto] = useState(null) 
+
 const {itemId} = useParams()      
     useEffect(() => {
-        getProductosById(itemId) 
-            .then(response => {
-                    setProducto(response) 
-            })
-            .catch(error => {
-                console.error(error)
-            })
-        
+        const docRef = doc(db,'productos',itemId)
+        getDoc(docRef)
+        .then( response=> {
+            const data = response.data()
+            const productoAdaptado = {id: response.id, ...data}
+            setProducto(productoAdaptado)
+        })
+        .catch(error=> {
+            console.log(error)
+        }) 
     },[itemId]) 
     
     

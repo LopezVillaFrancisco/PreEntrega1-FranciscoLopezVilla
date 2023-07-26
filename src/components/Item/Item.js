@@ -1,6 +1,5 @@
 import { Link } from "react-router-dom"
 function Item ({id,nombre,precio,imagen,stock}){
-    console.log(id)
     return(
     <article className=" container card">
         <header>

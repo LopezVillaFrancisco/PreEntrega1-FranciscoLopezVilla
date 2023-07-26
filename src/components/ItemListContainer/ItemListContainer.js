@@ -1,23 +1,31 @@
 import { useState,useEffect } from "react" 
-import { getProductos,getProductosByCategoria } from "../../async"
 import ItemList from "../ItemList/ItemList"
 import { useParams } from "react-router-dom"
+import {getDocs,collection,query,where} from 'firebase/firestore'
+import {db} from '../../config/firebase'
+
+
 
 function ItemListContainer ({greeting}){
-
-    const [productos,setProductos] = useState([])
+    const [productos,setProductos] = useState([]) 
     const {categoriaId} = useParams();   
-    useEffect(() => {
-        const asyncFunc= categoriaId ? getProductosByCategoria : getProductos
-        asyncFunc(categoriaId)
-        .then(response => {
-            setProductos(response)
-        })
-        .catch(error => {
-            console.error(error)
-        })  
-    },[categoriaId])
-
+    useEffect(() => { 
+        const collectionRef=categoriaId 
+        ? query(collection(db,'productos'),where('categoria','==',categoriaId))
+        :collection(db,'productos')
+        
+        getDocs(collectionRef)
+        .then(response=> {
+            const productosAdaptados = response.docs.map(doc => {
+                const data = doc.data();
+                return {id:doc.id,...data}
+            })
+            setProductos(productosAdaptados)
+        }) 
+        .catch(error =>{
+            console.log(error)
+        }) 
+    })
     return (
         <div className="container">
             <h1 className="title has-text-centered">{greeting}</h1>

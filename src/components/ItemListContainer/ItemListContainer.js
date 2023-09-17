@@ -25,7 +25,7 @@ function ItemListContainer ({greeting}){
         .catch(error =>{
             console.log(error)
         }) 
-    })
+    },[categoriaId])
     return (
         <div className="container">
             <h1 className="title has-text-centered">{greeting}</h1>
